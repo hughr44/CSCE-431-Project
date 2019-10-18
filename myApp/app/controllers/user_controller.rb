@@ -2,14 +2,18 @@ class UserController < ApplicationController
     # caller is an email address, so make sure you get user object associated with that email
     # so that you can check that they are admin.
     # user is a user object that has an email and permission level
-    def user_params
+    def userParams
         params.require(:user).permit(:email, :permissionLevel, :linkedInUrl)
     end
 
+    def create
+        @user = User.create!(userParams)
+        @user.save
+    end
 
     def createUser(requester, user)
         if((user.permissionLevel=='admin' && requester.permissionLevel=='admin') || user.permissionLevel=='member') 
-            @user = User.create!(user)
+            @user = User.create!(userParams)
             #redirect_to login
         end
     end
@@ -26,6 +30,10 @@ class UserController < ApplicationController
         @user = User.find(email)
     end
     
+    def getOfficers
+        @user = User.where('permissionLevel' => 'admin')
+    end
+    
     def getUsers
         @user = User.all
     end
@@ -37,5 +45,6 @@ class UserController < ApplicationController
     end
     
     def login
+        @user = User.all
     end
 end
