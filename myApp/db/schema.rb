@@ -14,6 +14,6 @@ ActiveRecord::Schema.define(version: 0) do
     create_table "users", force: :cascade do |t|
     t.string   "email"
     t.string   "permissionLevel"
-    t.text     "linkedInUrl"
+    t.string   "linkedInUrl"
   end
 end

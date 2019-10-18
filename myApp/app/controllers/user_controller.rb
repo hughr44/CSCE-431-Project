@@ -1,41 +1,65 @@
 class UserController < ApplicationController
-    # caller is an email address, so make sure you get user object associated with that email
-    # so that you can check that they are admin.
-    # user is a user object that has an email and permission level
     def user_params
         params.require(:user).permit(:email, :permissionLevel, :linkedInUrl)
     end
+    
+    def new
+        @user = User.new
+    end
 
+    def index
+        @users = User.all
+    end
 
-    def createUser(requester, user)
-        if((user.permissionLevel=='admin' && requester.permissionLevel=='admin') || user.permissionLevel=='member') 
-            @user = User.create!(user)
-            #redirect_to login
+    def create
+        if (userExists(params['email']))
+            return
+        end
+        
+        if (!params.has_key?('permissionLevel'))
+            params['permissionLevel'] = 'member'
+        end
+        
+        requester_email = getEmailFromToken(@token)
+        requester = getUser(requester_email)
+        
+        if((params['permissionLevel']=='officer' && requester.permissionLevel=='officer') || params['permissionLevel']=='member') 
+            # user = User.new
+            # user.email = params['email']
+            # user.permissionLevel = params['permissionLevel']
+            # user.linkedInUrl = params['linkedInUrl']
+            # user.save
+            
+            user = User.create(email: params['email'], permissionLevel: params['permissionLevel'], linkedInUrl: params['linkedInUrl'])
+            puts user.email
         end
     end
     
-    def updateUser(requester, user)
-        if (user.permissionLevel=='admin' && requester.permissionLevel=='admin')
-            @user = User.find(user)
-            @user.update_attributes!(user_params)
+    def destroy
+        requester_email = getEmailFromToken(@token)
+        requester = getUser(requester_email)
+        user = getUser(params['email'])
+        
+        if (requester.email == user.email || requester.permissionLevel=='officer') 
+            user.destroy
         end
-            
+    end
+    
+    def setToken(token)
+        # chris please call this function and set the token after the user signs in
+        @token = token
+    end
+    
+    def getEmailFromToken(token)
+        # chris please work on this function.
+        return 'danwgun@gmail.com'
     end
     
     def getUser(email)
-        @user = User.find(email)
+        return User.where(email: email)
     end
     
-    def getUsers
-        @user = User.all
-    end
-    
-    def deleteUser(requester, user)
-        if(requester==user || requester.permissionLevel=='admin') 
-            @user.destory
-        end
-    end
-    
-    def login
+    def userExists(email)
+        return User.exists?(email: email)
     end
 end
