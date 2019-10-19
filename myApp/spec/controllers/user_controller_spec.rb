@@ -6,38 +6,45 @@ require_relative '../../app/controllers/user_controller'
 
 RSpec.describe UserController, type: :controller do
     
-    describe 'createUser' do
+    describe 'Testing UserController' do
         
-        before do
-            @adminUser1 = User.create!(:email=>'admin1@email.com', :permissionLevel=>'admin', :linkedInUrl=>'linkedin.com')
-            @adminUser2 = User.create!(:email=>'admin2@email.com', :permissionLevel=>'admin', :linkedInUrl=>'linkedin.com')
-            @memberUser1 = User.create!(:email=>'member1@email.com', :permissionLevel=>'member', :linkedInUrl=>'linkedin.com')
-            @memberUser2 = User.create!(:email=>'member2@email.com', :permissionLevel=>'member', :linkedInUrl=>'linkedin.com')
-        end
-        
-        describe 'Admin Create Member' do
-            it 'admin creating member should be successful' do
-                expect(@adminUser1.createUser(@adminUser1, @memberUser1)).to be_success
-            end
-        end
-        
-        describe 'Admin Create Admin' do
-            it 'admin creating admin should be successful' do
-                expect(createUser(@adminUser1, @adminUser2)).to be_success
-            end
-        end
-        
-        describe 'Member Create Member' do
-            it 'member creating member should not be successful' do
-                expect(createUser(@memberUser1, @memberUser2)).not_to be_success
-            end
-        end
-        
-        describe 'Member Create Admin' do
-            it 'member creating admin should not be successful' do
-                expect(createUser(@memberUser1, @adminUser2)).not_to be_success
+        describe 'Member Destroy' do
+            it 'destroy member should not be successful' do
+                controller.params['email'] = 'nandan@tamu.edu'
+                expect(UserController.new.destroy).to be_success
             end
         end   
+        
+        describe 'Member Create' do
+            it 'creating member should be successful' do
+                controller.params['email'] = 'nandan@tamu.edu'
+                expect(UserController.new.create).to be_success
+            end
+        end   
+        
+        describe 'getUser1' do
+            it 'getUser on valid email should be successful' do
+                expect(UserController.new.getUser('nandan@tamu.edu')).to be_success
+            end
+        end
+        
+        describe 'getUser2' do
+            it 'getUser on invalid email should not be successful' do
+                expect(UserController.new.getUser('doesntexist@tamu.edu')).not_to be_success
+            end
+        end
+        
+        describe 'userExists1' do
+            it 'userExists on existing user should be true' do
+                expect(UserController.new.userExists('nandan@tamu.edu')).to be_truthy
+            end
+        end
+        
+        describe 'userExists2' do
+            it 'userExists on non existing user should be false' do
+                expect(UserController.new.userExists('doesntexist@tamu.edu')).to be_falsy
+            end
+        end
         
     end
 
