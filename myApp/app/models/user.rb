@@ -1,11 +1,5 @@
 class User < ActiveRecord::Base
     
-    # def initialize(email, permissionLevel, linkedInUrl)
-    #     @email = email
-    #     @permissionLevel = permissionLevel
-    #     @linkedInUrl = linkedInUrl
-    # end
-    
     def email
         @email
     end
@@ -29,6 +23,5 @@ class User < ActiveRecord::Base
     def linkedInUrl=(linkedInUrl)
         @linkedInUrl = linkedInUrl
     end
-    
     
 end
