@@ -9,6 +9,8 @@ class UserController < ApplicationController
 
     def index
         @users = User.all
+        puts "users:"
+        puts @users
     end
 
     def create
@@ -24,14 +26,7 @@ class UserController < ApplicationController
         requester = getUser(requester_email)
         
         if((params['permissionLevel']=='officer' && requester.permissionLevel=='officer') || params['permissionLevel']=='member') 
-            # user = User.new
-            # user.email = params['email']
-            # user.permissionLevel = params['permissionLevel']
-            # user.linkedInUrl = params['linkedInUrl']
-            # user.save
-            
-            user = User.create(email: params['email'], permissionLevel: params['permissionLevel'], linkedInUrl: params['linkedInUrl'])
-            puts user.email
+            User.create(email: params['email'], permissionLevel: params['permissionLevel'], linkedInUrl: params['linkedInUrl'])
         end
     end
     
