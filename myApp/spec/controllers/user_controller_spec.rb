@@ -46,6 +46,24 @@ RSpec.describe UserController, type: :controller do
             end
         end
         
+        describe 'index' do
+            it 'index should be success' do
+                expect(UserController.new.index).to be_success
+            end
+        end
+        
+        describe 'new' do
+            it 'new should be success' do
+                expect(UserController.new).to be_success
+            end
+        end
+        
+        describe 'user_params' do
+            it 'user_params should be success' do
+                expect(UserController.new.user_params).to be_success
+            end
+        end
+        
     end
 
 end
