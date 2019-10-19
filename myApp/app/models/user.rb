@@ -1,34 +1,34 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
     
-    # def initialize(email, permissionLevel, linkedInUrl)
+    # def initialize(email, perm,linkedin)
     #     @email = email
     #     @permissionLevel = permissionLevel
     #     @linkedInUrl = linkedInUrl
     # end
     
-    def email
-        @email
-    end
+    # #GETTER
+    # def id
+    #     @id
+    # end
     
-    def permissionLevel
-        @permissionLevel
-    end
+    # def email
+    #     @email
+    # end
     
-    def linkedInUrl
-        @linkedin
-    end
+    # def linkedin
+    #     @linkedin
+    # end
     
-    def email=(email)
-        @email = email
-    end
+    # #SETTER
+    # def id=(id)
+    #     @id = id
+    # end
     
-    def permissionLevel=(permissionLevel)
-        @permissionLevel = permissionLevel
-    end
+    # def email=(email)
+    #     @email = email
+    # end
     
-    def linkedInUrl=(linkedInUrl)
-        @linkedInUrl = linkedInUrl
-    end
-    
-    
+    # def linkedin=(linkedin)
+    #     @linkedin = linkedin
+    # end
 end

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  email: MyString
+  permissionLevel: MyString
+  linkedInUrl: MyString
+
+two:
+  email: MyString
+  permissionLevel: MyString
+  linkedInUrl: MyString
