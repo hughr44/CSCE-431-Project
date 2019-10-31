@@ -14,3 +14,11 @@ users = [{:email => 'nandan@tamu.edu', :permissionLevel => 'admin', :linkedInUrl
 users.each do |user|
     User.create!(user)
 end
+
+events = [{:eventID => 1, :eventName => "Dell Workshop", :eventDescription => "A workshop with Dell.", :eventImage => "", :eventUsers => 'nandan@tamu.edu'},
+        {:eventID => 2, :eventName => "Industrial Night", :eventDescription => "Come meet with ppl.", :eventImage => "", :eventUsers => 'admin1@tamu.edu'},
+        {:eventID => 3, :eventName => "Movie Night", :eventDescription => "Watch a movie", :eventImage => "", :eventUsers => 'nmember1@tamu.edu'}
+    ]
+events.each do |e|
+    Event.create!(e)
+end

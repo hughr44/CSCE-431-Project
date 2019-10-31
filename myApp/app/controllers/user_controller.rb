@@ -25,7 +25,7 @@ class UserController < ApplicationController
         requester_email = getEmailFromToken(@token)
         requester = getUser(requester_email)
         
-        if((params['permissionLevel']=='officer' && requester.permissionLevel=='officer') || params['permissionLevel']=='member') 
+        if((params['permissionLevel']=='admin' && requester.permissionLevel=='admin') || params['permissionLevel']=='member') 
             User.create(email: params['email'], permissionLevel: params['permissionLevel'], linkedInUrl: params['linkedInUrl'])
         end
     end

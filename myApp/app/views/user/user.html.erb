@@ -6,7 +6,7 @@
       <div class="col-12 col-md-7">
         <h4>Officers:</h4>
         <ul>
-          <% User.all.where(:permissionLevel == 'officer').each  do |user| %>
+          <% User.all.where(:permissionLevel => 'admin').each  do |user| %>
             <li>
               <%= user.email %>
             </li>
@@ -15,7 +15,7 @@
           
         <h4>Members:</h4>
         <ul>
-          <% User.all.where(:permissionLevel == 'member').each do |user| %>
+          <% User.all.each do |user| %>
             <li>
               <%= user.email %>
             </li>
