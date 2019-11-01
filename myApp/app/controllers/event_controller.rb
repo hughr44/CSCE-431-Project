@@ -29,7 +29,6 @@ class EventController < ApplicationController
     def update
         @event = Event.find(params[:id])
         @event.update_attributes!(event_params)
-        #@event.update_attributes!(:eventID => @event.id, :eventName => params['eventName'], :eventDescription => params['eventDescription'], :eventImage => params['eventImage'], :eventUsers => params['eventUsers'])
         redirect_to event_path
     end
     def destroy
@@ -37,6 +36,9 @@ class EventController < ApplicationController
         @event.destroy
         redirect_to event_path
     end
-    #TODO add eventDate
+    #TODO list 
+    #add eventDate
     #take out id
+    #know what permissionLevel user has
+    #make eventUsers an array
 end
