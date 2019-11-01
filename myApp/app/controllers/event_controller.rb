@@ -28,7 +28,6 @@ class EventController < ApplicationController
     end
     def update
         @event = Event.find(params[:id])
-        #TODO idk why event.params doesn't work
         @event.update_attributes!(event_params)
         #@event.update_attributes!(:eventID => @event.id, :eventName => params['eventName'], :eventDescription => params['eventDescription'], :eventImage => params['eventImage'], :eventUsers => params['eventUsers'])
         redirect_to event_path
