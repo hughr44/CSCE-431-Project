@@ -44,9 +44,10 @@ RSpec.describe UserController, type: :controller do
         describe 'destroy' do
             it 'creating then destroying user then calling userExists on specified email shoud be false' do
                 @testUser = User.create(email: 'nandan@tamu.edu', permissionLevel: 'member', linkedInUrl: '')
-                allow(UserController).to receive(:getEmailFromToken).and_return('nandan@tamu.edu')
-                UserController.new.destroy
-                expect(UserController.new.userExists('nandan@tamu.edu')).to be_falsy
+                @tempContr = UserController.new
+                allow(@tempContr).to receive(:getEmailFromToken).with('rand token').and_return('nandan@tamu.edu')
+                @tempContr.destroy
+                expect(@tempContr.userExists('nandan@tamu.edu')).to be_falsy
             end
         end
         
