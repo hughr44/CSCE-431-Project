@@ -1,0 +1,7 @@
+#encoding: utf-8
+Feature: First Feature
+
+Scenario: Admin Account 
+    Given an admin account 
+    When I can add member accounts
+    Then I will have multiple users 
