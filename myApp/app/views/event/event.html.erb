@@ -5,7 +5,7 @@
     <ul>
       <% @event.each do |e| %>
         <li>
-          <%= e.eventName %>: <%=e.eventDescription%> 
+          <%= link_to e.eventName, 'event/'+e.id.to_s %>: <%=e.eventDescription%> 
         </li>
       <% end %>
     </ul>
