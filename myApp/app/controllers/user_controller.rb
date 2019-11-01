@@ -47,7 +47,7 @@ class UserController < ApplicationController
     
     def getEmailFromToken(token)
         # chris please work on this function.
-        return 'danwgun@gmail.com'
+        return session[:userinfo].fetch("info").fetch("email")
     end
     
     def getUser(email)

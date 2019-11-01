@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
+  get 'dashboard/show'
+  get 'home/show'
+  root 'home#show'
+  get 'dashboard' => 'dashboard#show'
     get 'user' => 'user#user'
+    get 'auth/auth0/callback' => 'auth0#callback'
+    get 'auth/failure' => 'auth0#failure'
     resources :user
     
     get 'event' => 'event#event'
