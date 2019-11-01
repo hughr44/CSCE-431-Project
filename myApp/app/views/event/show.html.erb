@@ -1,4 +1,5 @@
 <h4>Event name: <%= @event.eventName %> <br> Event Description: <%= @event.eventDescription%></h4>
-<p>[edit] [delete]</p>
-<p> <%=link_to 'back to event page','/event' %> </p>
+<p><%= link_to 'edit this event', edit_event_path(@event)%></p>
+<p><%= button_to 'delete this event', event_path(@event)%></p>
+<p><%=link_to 'back to event page','/event' %></p>
 
