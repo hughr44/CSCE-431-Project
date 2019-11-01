@@ -34,7 +34,9 @@ class EventController < ApplicationController
         redirect_to event_path
     end
     def destroy
-        blah
+        @event = Event.find(params[:id])
+        @event.destroy
+        redirect_to event_path
     end
     #TODO add eventDate
     #take out id
