@@ -1,12 +1,12 @@
-When(/^officer goes to homepage where admins can manage events$/) do
-  visit root_path
+When(/^officer goes to event page where admins can manage events$/) do
+  visit "https://77a39c2dc126472cb779ce07ffa73eee.vfs.cloud9.us-west-2.amazonaws.com/event"
 end 
 When(/^officer inputs event name and description$/) do
-  visit root_path
+  visit "https://77a39c2dc126472cb779ce07ffa73eee.vfs.cloud9.us-west-2.amazonaws.com/event"
 end
-And (/^officer presses submit$/) do
-    click_button 'Login'
+And (/^officer presses the create button$/) do
+    find('[name=commit]').click
 end
-Then(/^event is added to home page$/) do
-    expect(page).to have_content("RoR Auth0 Sample")
+Then(/^event is added to event page$/) do
+    expect(page).to have_content("Avengers")
 end
