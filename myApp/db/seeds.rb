@@ -21,8 +21,5 @@ events = [{:eventID => 1, :eventName => "Dell Workshop", :eventDescription => "A
     ]
 events.each do |e|
     Event.create!(e)
-<<<<<<< HEAD
 end
-=======
-end
->>>>>>> ea1a8f3917ae416455d6537e93a0a461fd467862
+

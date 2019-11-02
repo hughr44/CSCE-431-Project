@@ -289,6 +289,12 @@
         1,
         1,
         null,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null,
         null
       ],
       "/home/ubuntu/environment/CSCE-431-Project/myApp/app/helpers/application_helper.rb": [
@@ -296,6 +302,10 @@
         null
       ],
       "/home/ubuntu/environment/CSCE-431-Project/myApp/app/helpers/dashboard_helper.rb": [
+        1,
+        null
+      ],
+      "/home/ubuntu/environment/CSCE-431-Project/myApp/app/helpers/event_helper.rb": [
         1,
         null
       ],
@@ -364,6 +374,119 @@
         null,
         1,
         1,
+        null,
+        null
+      ],
+      "/home/ubuntu/environment/CSCE-431-Project/myApp/spec/controllers/event_controller_controller_spec.rb": [
+        1,
+        null,
+        1,
+        1,
+        null,
+        1,
+        null,
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/home/ubuntu/environment/CSCE-431-Project/myApp/app/models/event.rb": [
+        1,
+        null
+      ],
+      "/home/ubuntu/environment/CSCE-431-Project/myApp/app/models/application_record.rb": [
+        1,
+        1,
+        null
+      ],
+      "/home/ubuntu/environment/CSCE-431-Project/myApp/app/controllers/event_controller.rb": [
+        1,
+        1,
+        0,
+        null,
+        null,
+        1,
+        0,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
+        null,
+        null,
+        0,
+        null,
+        0,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null,
+        1,
+        1,
+        null,
+        1,
+        1,
+        0,
+        0,
+        null,
+        1,
+        1,
+        0,
+        0,
+        null,
+        null,
+        null,
+        null,
+        null,
         null,
         null
       ],
@@ -448,11 +571,6 @@
         null
       ],
       "/home/ubuntu/environment/CSCE-431-Project/myApp/app/models/user.rb": [
-        1,
-        null
-      ],
-      "/home/ubuntu/environment/CSCE-431-Project/myApp/app/models/application_record.rb": [
-        1,
         1,
         null
       ],
@@ -574,6 +692,6 @@
         null
       ]
     },
-    "timestamp": 1572630191
+    "timestamp": 1572658952
   }
 }
