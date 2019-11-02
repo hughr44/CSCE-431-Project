@@ -1,13 +1,12 @@
 <div class="main mt-2">
   <div class="container">
-    CHRIS PUT YOUR THING HERE AND ONCE WE GET THE USER'S EMAIL, HIDE THIS PART OF THE PAGE.
   </div>
   <div class="container">
     <div class="row">
       <div class="col-12 col-md-7">
         <h4>Officers:</h4>
         <ul>
-          <% User.all.where(:permissionLevel == 'officer').each  do |user| %>
+          <% User.all.where(:permissionLevel => 'admin').each  do |user| %>
             <li>
               <%= user.email %>
             </li>
@@ -16,7 +15,7 @@
           
         <h4>Members:</h4>
         <ul>
-          <% User.all.where(:permissionLevel == 'member').each do |user| %>
+          <% User.all.each do |user| %>
             <li>
               <%= user.email %>
             </li>
