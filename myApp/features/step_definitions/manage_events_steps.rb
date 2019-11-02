@@ -1,8 +1,8 @@
 When(/^officer goes to event page where admins can manage events$/) do
-  visit "https://77a39c2dc126472cb779ce07ffa73eee.vfs.cloud9.us-west-2.amazonaws.com/event"
+  visit "https://tranquil-atoll-38693.herokuapp.com/event"
 end 
 When(/^officer inputs event name and description$/) do
-  visit "https://77a39c2dc126472cb779ce07ffa73eee.vfs.cloud9.us-west-2.amazonaws.com/event"
+  visit "https://tranquil-atoll-38693.herokuapp.com/event"
 end
 And (/^officer presses the create button$/) do
     find('[name=commit]').click
