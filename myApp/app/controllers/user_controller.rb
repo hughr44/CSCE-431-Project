@@ -7,10 +7,13 @@ class UserController < ApplicationController
         @user = User.new
     end
 
-    def index
+    def show
+        session['redirect_url'] = '/user'
+        redirect_to '/login'
+        
+        @logged_in_user = getUser(session[:userinfo].fetch("info").fetch("email"))
+        
         @users = User.all
-        puts "users:"
-        puts @users
     end
 
     def create
@@ -22,7 +25,6 @@ class UserController < ApplicationController
             params['permissionLevel'] = 'member'
         end
         
-        requester_email = getEmailFromToken(@token)
         requester = getUser(requester_email)
         
         if((params['permissionLevel']=='admin' && requester.permissionLevel=='admin') || params['permissionLevel']=='member') 
@@ -38,16 +40,6 @@ class UserController < ApplicationController
         if (requester.email == user.email || requester.permissionLevel=='officer') 
             user.destroy
         end
-    end
-    
-    def setToken(token)
-        # chris please call this function and set the token after the user signs in
-        @token = token
-    end
-    
-    def getEmailFromToken(token)
-        # chris please work on this function.
-        return session[:userinfo].fetch("info").fetch("email")
     end
     
     def getUser(email)
