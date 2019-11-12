@@ -6,6 +6,8 @@ class Auth0Controller < ApplicationController
 
     # Redirect to the URL you want after successful auth
     redirect_to session['redirect_url']
+        
+    session['logged_in'] = true
   end
 
   def failure

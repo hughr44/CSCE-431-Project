@@ -8,6 +8,7 @@ class UserController < ApplicationController
     end
     
     def show
+        # reset_session
         if (session.has_key?('logged_in'))
             @logged_in_user = getUser(session[:userinfo].fetch("info").fetch("email"))
             return
@@ -15,8 +16,6 @@ class UserController < ApplicationController
         
         session['redirect_url'] = '/user'
         redirect_to '/login'
-        
-        session['logged_in'] = true
     end
 
     # def index

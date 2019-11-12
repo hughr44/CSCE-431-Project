@@ -1,5 +1,31 @@
-<h4>Event name: <%= @event.eventName %> <br> Event Description: <%= @event.eventDescription%></h4>
-<p><%= link_to 'edit this event', edit_event_path(@event)%></p>
-<p><%= button_to 'delete this event',{controller: :event, action: 'destroy', id: @event.id }, method: :delete , url: '/event/'+@event.id.to_s%>
-<p><%= link_to 'back to event page','/event' %></p>
+<div class="main">
+  <div class="container">
+    <h1 class="pt-2">Recent Events</h1>
+    
+    <ul>
+      <% @events.each do |e| %>
+        <div class="row border-bottom py-4">
+          <div class="col-lg-6 col-12">
+            <img class="img-fluid" src="https://hispanicstudies.tamu.edu/wp-content/uploads/sites/6/2015/03/academic-1.jpg">
+          </div>
+          <div class="col-lg-4 col-12">
+            <h4><%= e.eventName %></h4>
+            <p><%= e.eventDescription %></p>
+          </div>
+          <div class="col-lg-2 col-12">
+            <!--<p>Interested? Register <a href="">here</a>.</p>-->
+            <!--<p>Registered members:</p>-->
+            <!--<ul>-->
+            <!--</ul>-->
+            <div class="text-center pb-2">
+              <button class="btn btn-primary">Register</button>  
+            </div>
+            <h6>Registered Users:</h6>
+          </div>
+        </div>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
 

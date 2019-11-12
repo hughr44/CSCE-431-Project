@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   delete 'user' => 'user#destroy'
   resources :user
   
-  get 'event' => 'event#event'
-  get 'event.:id' => 'event#show'
+  get 'event' => 'event#show'
+  get 'event.:id' => 'event#fixme'
   resources :event
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
