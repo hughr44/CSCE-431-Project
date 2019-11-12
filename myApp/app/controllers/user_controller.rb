@@ -6,17 +6,27 @@ class UserController < ApplicationController
     def new
         @user = User.new
     end
-
+    
     def show
+        if (session.has_key?('logged_in'))
+            @logged_in_user = getUser(session[:userinfo].fetch("info").fetch("email"))
+            return
+        end
+        
         session['redirect_url'] = '/user'
         redirect_to '/login'
         
-        @logged_in_user = getUser(session[:userinfo].fetch("info").fetch("email"))
-        
-        @users = User.all
+        session['logged_in'] = true
     end
 
+    # def index
+    #     @logged_in_user = getUser(session[:userinfo].fetch("info").fetch("email"))
+    #     @users = User.all
+    # end
+
     def create
+        @logged_in_user = getUser(session[:userinfo].fetch("info").fetch("email"))
+        
         if (userExists(params['email']))
             return
         end
@@ -25,25 +35,26 @@ class UserController < ApplicationController
             params['permissionLevel'] = 'member'
         end
         
-        requester = getUser(requester_email)
-        
-        if((params['permissionLevel']=='admin' && requester.permissionLevel=='admin') || params['permissionLevel']=='member') 
+        if (@logged_in_user.permissionLevel == 'officer')
             User.create(email: params['email'], permissionLevel: params['permissionLevel'], linkedInUrl: params['linkedInUrl'])
         end
+        
+        redirect_to '/user'
     end
     
     def destroy
-        requester_email = getEmailFromToken(@token)
-        requester = getUser(requester_email)
+        @logged_in_user = getUser(session[:userinfo].fetch("info").fetch("email"))
         user = getUser(params['email'])
         
-        if (requester.email == user.email || requester.permissionLevel=='officer') 
+        if (@logged_in_user.email == user.email || @logged_in_user.permissionLevel == 'officer') 
             user.destroy
         end
+        
+        redirect_to '/user'
     end
     
     def getUser(email)
-        return User.where(email: email)
+        return User.where(email: email).first
     end
     
     def userExists(email)

@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   get 'auth/auth0/callback' => 'auth0#callback'
   get 'auth/failure' => 'auth0#failure'
   
-  get 'user' => 'user#user'
+  get 'user' => 'user#show'
+  delete 'user' => 'user#destroy'
   resources :user
   
   get 'event' => 'event#event'

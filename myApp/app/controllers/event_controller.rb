@@ -6,7 +6,8 @@ class EventController < ApplicationController
     def new 
        @event = Event.new 
     end
-    def event 
+    
+    def event
         @event = Event.all
     end
     
