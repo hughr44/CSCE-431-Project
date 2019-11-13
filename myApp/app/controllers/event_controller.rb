@@ -3,11 +3,28 @@ class EventController < ApplicationController
         params.require(:event).permit(:eventID, :eventName, :eventDescription, :eventImage, :eventUsers)
     end
     
+    def show
+        if (session.has_key?('logged_in'))
+            @logged_in_user = getUser(session[:userinfo].fetch("info").fetch("email"))
+            @events = Event.all
+            return
+        end
+        
+        session['redirect_url'] = '/user'
+        redirect_to '/login'
+        
+        session['logged_in'] = true
+    end
+    
+    def getUser(email)
+        return User.where(email: email).first
+    end
+    
     def new 
        @event = Event.new 
     end
     
-    def event 
+    def event
         @event = Event.all
     end
     
@@ -17,11 +34,6 @@ class EventController < ApplicationController
             Event.create!(:eventID => params['eventID'], :eventName => params['eventName'], :eventDescription => params['eventDescription'], :eventImage => params['eventImage'], :eventUsers => params['eventUsers'])
         # end    
         redirect_to event_path
-    end
-    
-    def show
-        @event = Event.find(params[:id])
-        # redirect_to user
     end
     
     def edit

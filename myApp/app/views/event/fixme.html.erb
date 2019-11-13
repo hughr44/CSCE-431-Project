@@ -1,0 +1,5 @@
+<h4>Event name: <%= @event.eventName %> <br> Event Description: <%= @event.eventDescription%></h4>
+<p><%= link_to 'edit this event', edit_event_path(@event)%></p>
+<p><%= button_to 'delete this event',{controller: :event, action: 'destroy', id: @event.id }, method: :delete , url: '/event/'+@event.id.to_s%>
+<p><%= link_to 'back to event page','/event' %></p>
+

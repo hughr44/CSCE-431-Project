@@ -1,12 +1,10 @@
 <div class="main mt-2">
   <div class="container">
-  </div>
-  <div class="container">
     <div class="row">
       <div class="col-12 col-md-7">
         <h4>Officers:</h4>
         <ul>
-          <% User.all.where(:permissionLevel => 'admin').each  do |user| %>
+          <% User.all.where(:permissionLevel => 'officer').each  do |user| %>
             <li>
               <%= user.email %>
             </li>
@@ -16,9 +14,12 @@
         <h4>Members:</h4>
         <ul>
           <% User.all.each do |user| %>
-            <li>
-              <%= user.email %>
-            </li>
+            <div class="row p-2 border-bottom">
+              <li class="col-6">
+                <%= user.email %>
+              </li>
+              <%= button_to "Delete", {:controller => :user, :action => 'destroy', :email => user.email }, :method => :delete, class: "btn btn-danger" %>
+            </div>
           <% end %>
         </ul>
       </div>
@@ -30,6 +31,14 @@
           <div class="row form-group">
             <label class="col-6">Email:</label>
             <%= f.text_field :email, class: "col-6 form-control" %>
+          </div>
+          
+          <div class="row form-group">
+            <label class="col-6">Permission Level:</label>
+            <select class="col-6 form-control">
+              <option>member</option>
+              <option>officer</option>
+            </select>
           </div>
           
           <div class="row form-group">

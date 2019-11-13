@@ -5,12 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-users = [{:email => 'nandan@tamu.edu', :permissionLevel => 'admin', :linkedInUrl => ''},
-        {:email => 'admin1@tamu.edu', :permissionLevel => 'admin', :linkedInUrl => ''},
-        {:email => 'admin2@tamu.edu', :permissionLevel => 'admin', :linkedInUrl => ''},
-        {:email => 'member1@tamu.edu', :permissionLevel => 'member', :linkedInUrl => ''},
-        {:email => 'member2@tamu.edu', :permissionLevel => 'member', :linkedInUrl => ''},
-    ]
+users = [
+    {:email => 'nandan@tamu.edu', :permissionLevel => 'officer', :linkedInUrl => ''},
+    {:email => 'lienshao@tamu.edu', :permissionLevel => 'officer', :linkedInUrl => ''},
+    {:email => 'danwgun@gmail.com', :permissionLevel => 'officer', :linkedInUrl => ''}
+]
 users.each do |user|
     User.create!(user)
 end
@@ -22,3 +21,4 @@ events = [{:eventName => "Dell Workshop", :eventDescription => "A workshop with 
 events.each do |e|
     Event.create!(e)
 end
+
