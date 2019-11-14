@@ -3,14 +3,14 @@
     <h1 class="pt-2">Recent Events</h1>
     
     <ul>
-      <% @events.each do |e| %>
+      <% @data.each do |d| %>
         <div class="row border-bottom py-4">
           <div class="col-lg-6 col-12">
             <img class="img-fluid" src="https://hispanicstudies.tamu.edu/wp-content/uploads/sites/6/2015/03/academic-1.jpg">
           </div>
           <div class="col-lg-4 col-12">
-            <h4><%= e.eventName %></h4>
-            <p><%= e.eventDescription %></p>
+            <h4><%= d[0].eventName %></h4>
+            <p><%= d[0].eventDescription %></p>
           </div>
           <div class="col-lg-2 col-12">
             <!--<p>Interested? Register <a href="">here</a>.</p>-->
@@ -21,6 +21,9 @@
               <button class="btn btn-primary">Register</button>  
             </div>
             <h6>Registered Users:</h6>
+              <% d[1].each do |user| %>
+                <p><%=user.userEmail%></p>
+              <% end %>
           </div>
         </div>
       <% end %>

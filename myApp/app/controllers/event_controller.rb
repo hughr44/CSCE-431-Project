@@ -7,10 +7,25 @@ class EventController < ApplicationController
         if (session.has_key?('logged_in'))
             @logged_in_user = getUser(session[:userinfo].fetch("info").fetch("email"))
             @events = Event.all
+=begin            
+            @data is a container which contains (1) Event object (2) UsersEvents object
+            @data should looks like 
+            [ 
+                [Event obj(Dell Workshop), UsersEvent obj],
+                [Event obj(Industry Night), UsersEvent obj],
+                [Event obj(Movie Night), UsersEvent obj],
+            ]
+=end
+            #populating @data
+            @data = Array.new(@events.size)
+            @data.each_index do |i|
+                @data[i] = [@events[i],UsersEvent.where(eventName: @events[i].eventName)]
+                end
+            end
             return
         end
         
-        session['redirect_url'] = '/user'
+        session['redirect_url'] = '/event'
         redirect_to '/login'
         
         session['logged_in'] = true
