@@ -11,5 +11,10 @@ Rails.application.routes.draw do
   get 'event.:id' => 'event#fixme'
   resources :event
   
+  get 'announcement' => 'announcement#show'
+  get 'officer/announcement' => 'announcement#officer_show'
+  post 'officer/announcement' => 'announcement#create'
+  resources :announcement
+  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

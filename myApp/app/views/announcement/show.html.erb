@@ -1,0 +1,6 @@
+<h1>Announcements:</h1>
+<br></br>
+<% @announcements.each do |a| %>
+    <h4><%= a.announcementTitle%></h4>
+    <p><%= a.announcementText%></p>
+<% end %>
