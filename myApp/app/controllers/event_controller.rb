@@ -11,9 +11,9 @@ class EventController < ApplicationController
             @data is a container which contains (1) Event object (2) UsersEvents object
             @data should looks like 
             [ 
-                [Event obj(Dell Workshop), UsersEvent obj],
-                [Event obj(Industry Night), UsersEvent obj],
-                [Event obj(Movie Night), UsersEvent obj],
+                [Event obj(Dell Workshop), list of UsersEvent obj],
+                [Event obj(Industry Night), list of UsersEvent obj],
+                [Event obj(Movie Night), list of UsersEvent obj],
             ]
 =end
             #populating @data
@@ -21,7 +21,7 @@ class EventController < ApplicationController
             @data.each_index do |i|
                 @data[i] = [@events[i],UsersEvent.where(eventName: @events[i].eventName)]
                 end
-            end
+            end2
             return
         end
         

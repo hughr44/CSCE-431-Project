@@ -32,4 +32,11 @@ usersEvents = [ {:userEmail => "lienshao@tamu.edu", :eventName => "Dell Workshop
 usersEvents.each do |a|
     UsersEvent.create!(a)
 end
+    
+announcements = [ {:announcementTitle => "Upcoming Workshop!", :announcementText => "We have an upcoming workshop with Dell on Monday! See you there!"},
+                {:announcementTitle => "Congrats!", :announcementText => "Members of Data Analytics Club attanted TAMUHACK and got the 1st price!"}
+    ]
+announcements.each do |n|
+    Announcement.create!(n)
+end
 
