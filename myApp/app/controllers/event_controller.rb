@@ -20,8 +20,7 @@ class EventController < ApplicationController
             @data = Array.new(@events.size)
             @data.each_index do |i|
                 @data[i] = [@events[i],UsersEvent.where(eventName: @events[i].eventName)]
-                end
-            end2
+            end
             return
         end
         

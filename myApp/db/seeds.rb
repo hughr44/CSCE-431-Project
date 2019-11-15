@@ -34,7 +34,11 @@ usersEvents.each do |a|
 end
     
 announcements = [ {:announcementTitle => "Upcoming Workshop!", :announcementText => "We have an upcoming workshop with Dell on Monday! See you there!"},
-                {:announcementTitle => "Congrats!", :announcementText => "Members of Data Analytics Club attanted TAMUHACK and got the 1st price!"}
+                {:announcementTitle => "Congrats!", :announcementText => "Members of Data Analytics Club attanted TAMUHACK and got the 1st price!"},
+                {:announcementTitle => "ann1", :announcementText => "text1"},
+                {:announcementTitle => "ann2", :announcementText => "text2"},
+                {:announcementTitle => "ann3", :announcementText => "text3"},
+                {:announcementTitle => "ann4", :announcementText => "text4"}
     ]
 announcements.each do |n|
     Announcement.create!(n)
