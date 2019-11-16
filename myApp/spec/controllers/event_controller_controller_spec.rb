@@ -51,6 +51,17 @@ RSpec.describe EventController, type: :controller do
             end
         end
         
+        describe 'create' do
+            before do
+                params = {id: 1}
+                post :create, params: params
+            end
+            
+            it 'calling create on an event should be successful' do
+                expect(EventController.new.create).to be_successful
+            end
+        end
+        
     end
 
 end
