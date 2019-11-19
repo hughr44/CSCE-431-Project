@@ -11,15 +11,21 @@ class EventController < ApplicationController
             @data is a container which contains (1) Event object (2) UsersEvents object
             @data should looks like 
             [ 
-                [Event obj(Dell Workshop), list of UsersEvent obj],
-                [Event obj(Industry Night), list of UsersEvent obj],
-                [Event obj(Movie Night), list of UsersEvent obj],
+                [Event obj(Dell Workshop), list of UsersEvent obj, "Register"],
+                [Event obj(Industry Night), list of UsersEvent obj, "Unregister"],
+                [Event obj(Movie Night), list of UsersEvent obj, "Register"],
             ]
+            #populating @data below
 =end
-            #populating @data
             @data = Array.new(@events.size)
             @data.each_index do |i|
-                @data[i] = [@events[i],UsersEvent.where(eventName: @events[i].eventName)]
+                @list_of_users = UsersEvent.where(eventName: @events[i].eventName)
+                if(UsersEvent.exists?(eventName: @events[i].eventName, email: @logged_in_user.email))
+                    @status = "Unregister"
+                else
+                    @status = "Register"
+                end
+                @data[i] = [@events[i],@list_of_users, @status]
             end
             return
         end

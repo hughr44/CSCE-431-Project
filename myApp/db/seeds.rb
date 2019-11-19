@@ -22,12 +22,12 @@ events.each do |e|
     Event.create!(e)
 end
 
-usersEvents = [ {:userEmail => "lienshao@tamu.edu", :eventName => "Dell Workshop"},
-            {:userEmail => "nandan@tamu.edu", :eventName => "Dell Workshop"},
-            {:userEmail => "danwgun@tamu.edu", :eventName => "Dell Workshop"},
-            {:userEmail => "lienshao@tamu.edu", :eventName => "Industrial Night"},
-            {:userEmail => "nandan@tamu.edu", :eventName => "Industrial Night"},
-            {:userEmail => "danwgun@tamu.edu", :eventName => "Movie Night"}
+usersEvents = [ {:email => "lienshao@tamu.edu", :eventName => "Dell Workshop"},
+            {:email => "nandan@tamu.edu", :eventName => "Dell Workshop"},
+            {:email => "danwgun@tamu.edu", :eventName => "Dell Workshop"},
+            {:email => "lienshao@tamu.edu", :eventName => "Industrial Night"},
+            {:email => "nandan@tamu.edu", :eventName => "Industrial Night"},
+            {:email => "danwgun@tamu.edu", :eventName => "Movie Night"}
             ]
 usersEvents.each do |a|
     UsersEvent.create!(a)

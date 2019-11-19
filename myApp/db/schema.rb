@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2019_11_15_205233) do
   end
 
   create_table "users_events", force: :cascade do |t|
-    t.string "userEmail"
+    t.string "email"
     t.string "eventName"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

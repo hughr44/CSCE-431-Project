@@ -1,7 +1,7 @@
 <div class="main">
   <div class="container">
     <h1 class="pt-2">Recent Events</h1>
-    
+    <p>You're logged in as: <%= @logged_in_user.email %></p>
     <ul>
       <% @data.each do |d| %>
         <div class="row border-bottom py-4">
@@ -18,11 +18,11 @@
             <!--<ul>-->
             <!--</ul>-->
             <div class="text-center pb-2">
-              <button class="btn btn-primary">Register</button>  
+              <button class="btn btn-primary"><%=d[2]%></button>  
             </div>
             <h6>Registered Users:</h6>
               <% d[1].each do |user| %>
-                <p><%=user.userEmail%></p>
+                <p><%=user.email%></p>
               <% end %>
           </div>
         </div>

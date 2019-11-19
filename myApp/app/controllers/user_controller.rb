@@ -54,6 +54,9 @@ class UserController < ApplicationController
         redirect_to '/user'
     end
     
+    def about
+    end
+    
     def getUser(email)
         return User.where(email: email).first
     end
