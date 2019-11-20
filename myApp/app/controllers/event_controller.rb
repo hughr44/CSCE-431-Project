@@ -21,9 +21,10 @@ class EventController < ApplicationController
             @data.each_index do |i|
                 @list_of_users = UsersEvent.where(eventName: @events[i].eventName)
                 if(UsersEvent.exists?(eventName: @events[i].eventName, email: @logged_in_user.email))
-                    @status = "Unregister"
+                    @id = UsersEvent.where(eventName: @events[i].eventName, email: @logged_in_user.email).ids
+                    puts @id
                 else
-                    @status = "Register"
+                    @id = -1
                 end
                 @data[i] = [@events[i],@list_of_users, @status]
             end
