@@ -4,6 +4,6 @@ class UsersEventsController < ApplicationController
     end
     
     def create
-        1/0
+        2/0
     end
 end

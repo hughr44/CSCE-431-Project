@@ -18,10 +18,8 @@
             <!--<ul>-->
             <!--</ul>-->
             <div class="text-center pb-2">
-              <button class="btn btn-primary">
                 <%= button_to 'Register', :controller => "users_events", :action => 'create',  :method => "post" %>
                 <%= button_to 'Unregister',{:controller => "users_events", :action => 'destroy',:id => d[2] }, :method => :delete %>
-              </button>  
             </div>
             <h6>Registered Users:</h6>
               <% d[1].each do |user| %>
