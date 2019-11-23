@@ -1,9 +1,12 @@
 class UsersEventsController < ApplicationController
     def destroy
-        1/0
+        @usersEvent = UsersEvent.find(params[:id])
+        @usersEvent.destroy
+        redirect_to "/event/"
     end
     
     def create
-        2/0
+        UsersEvent.create!(:email => params[:email], :eventName => params[:eventName])
+        redirect_to "/event/"
     end
 end

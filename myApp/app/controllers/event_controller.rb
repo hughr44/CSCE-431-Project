@@ -7,6 +7,7 @@ class EventController < ApplicationController
         if (session.has_key?('logged_in'))
             @logged_in_user = getUser(session[:userinfo].fetch("info").fetch("email"))
             @events = Event.all
+            @usersEvents = UsersEvent.all
 =begin            
             @data is a container which contains (1) Event object (2) UsersEvents object
             @data should looks like 
@@ -16,7 +17,7 @@ class EventController < ApplicationController
                 [Event obj(Movie Night), list of UsersEvent obj, "Register"],
             ]
             #populating @data below
-=end
+
             @data = Array.new(@events.size)
             @data.each_index do |i|
                 @list_of_users = UsersEvent.where(eventName: @events[i].eventName)
@@ -29,12 +30,24 @@ class EventController < ApplicationController
                 @data[i] = [@events[i],@list_of_users, @status]
             end
             return
+=end            
+            @eventNameToListOfUsers = Hash.new
+            @eventNameToIfCurrentUserRegistered = Hash.new
+            @eventNameToUsersEventsObj = Hash.new
+            @eventNameToEventObj = Hash.new
+            @events.each do |e|
+                @eventNameToListOfUsers[e.eventName] = UsersEvent.where(eventName: e.eventName)
+                @eventNameToIfCurrentUserRegistered[e.eventName] = UsersEvent.exists?(eventName: e.eventName, email: @logged_in_user.email)
+                @eventNameToUsersEventsObj[e.eventName] = UsersEvent.where(eventName: e.eventName, email: @logged_in_user.email)
+                @eventNameToEventObj[e.eventName] = e
+            end
+        else
+            session['redirect_url'] = '/event'
+            redirect_to '/login'
+            session['logged_in'] = true
         end
         
-        session['redirect_url'] = '/event'
-        redirect_to '/login'
         
-        session['logged_in'] = true
     end
     
     def getUser(email)
