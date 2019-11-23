@@ -54,6 +54,30 @@ class UserController < ApplicationController
         redirect_to '/user'
     end
     
+    def home
+        # reset_session
+        if (session.has_key?('logged_in'))
+            @logged_in_user = getUser(session[:userinfo].fetch("info").fetch("email"))
+            @debug = "logged in"
+            return
+        end
+        session['redirect_url'] = '/'
+        redirect_to '/login'
+    end
+    
+    def officer
+        if (session.has_key?('logged_in'))
+            @logged_in_user = getUser(session[:userinfo].fetch("info").fetch("email"))
+            if(@logged_in_user.permissionLevel != "officer")
+                redirect_to '/'
+            end
+            return
+        end
+        
+        session['redirect_url'] = '/'
+        redirect_to '/login'
+    end
+    
     def about
     end
     
