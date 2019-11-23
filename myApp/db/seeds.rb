@@ -14,9 +14,9 @@ users.each do |user|
     User.create!(user)
 end
 
-events = [{:eventName => "Dell Workshop", :eventDescription => "A workshop with Dell.", :eventImage => "dell.jpg"},
+events = [{:eventName => "Dell Workshop", :eventDescription => "A workshop with Dell.", :eventImage => "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Dell_logo_2016.svg/1200px-Dell_logo_2016.svg.png"},
         {:eventName => "Industrial Night", :eventDescription => "Come meet with ppl.", :eventImage => "https://hispanicstudies.tamu.edu/wp-content/uploads/sites/6/2015/03/academic-1.jpg"},
-        {:eventName => "Movie Night", :eventDescription => "Watch a movie", :eventImage => "movie.jpg"}
+        {:eventName => "Movie Night", :eventDescription => "Watch a movie", :eventImage => "https://uvmbored.com/wp-content/uploads/2018/07/movienight.jpg"}
     ]
 events.each do |e|
     Event.create!(e)
