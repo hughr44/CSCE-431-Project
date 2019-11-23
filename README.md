@@ -1,6 +1,7 @@
 # Pages
 
 ## Members
+
 1. `/` This is for members. It should link to the rest of the pages. (backend DONE)
 2. `/about` Description of the club. (backend DONE)
 3. `/event` List of events. They can register for them. (backend DONE)
