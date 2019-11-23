@@ -1,12 +1,12 @@
 <div class="main">
   <div class="container">
     <h1 class="pt-2">Recent Events</h1>
-    
+    <h5>Logged in as: <%= @logged_in_user.email %></h5>
     <ul>
       <% @events.each do |e| %>
         <div class="row border-bottom py-4">
           <div class="col-lg-6 col-12">
-            <img class="img-fluid" src=<%= e.eventImage %>>
+            <img class="img-fluid" src=<%= e.eventImage %> width=40%>
           </div>
           <div class="col-lg-4 col-12">
             <h4><%= e.eventName %></h4>
@@ -15,9 +15,9 @@
           <div class="col-lg-2 col-12">
             <div class="text-center pb-2">
               <% if @eventNameToIfCurrentUserRegistered[e.eventName] %>
-                <%= button_to 'Unregister',{:controller => "users_events", :action => 'destroy',:id => e.id }, :method => :delete %>
+                <%= button_to 'Unregister',{:controller => "users_events", :action => 'destroy',:id => @eventNameToUsersEventsObj[e.eventName].ids }, :method => :delete %>
               <% else %>
-                <%= button_to 'Register', :controller => "users_events", :action => 'create',  :method => "post" %>
+                <%= button_to 'Register', {:controller => "users_events", :action => 'create', :email => @logged_in_user.email, :eventName => e.eventName},  :method => "post" %>
               <% end %>
             </div>
             <h6>Registered Users:</h6>
@@ -27,6 +27,9 @@
           </div>
         </div>
       <% end %>
+      <!--<%  @usersEvents.each do |ue| %>-->
+      <!--  <p><%= ue.id %>: <%=ue.eventName%> -> <%=ue.email %></p>-->
+      <!--<% end %>-->
     </ul>
   </div>
 </div>
