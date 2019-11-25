@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get 'user' => 'user#show'
   delete 'user' => 'user#destroy'
   get 'about' => 'user#about'
+  get '/' => 'user#home'
+  get 'officer' => 'user#officer'
   resources :user
   
   get 'event' => 'event#show'
