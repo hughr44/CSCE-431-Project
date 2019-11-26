@@ -1,0 +1,8 @@
+<h1>Data Analytics Club</h1>
+<h5>You are logged in as: <%= @logged_in_user.email%>, <%= @logged_in_user.permissionLevel%> </h5>
+<h3>About Us</h3>
+<p>The Texas A&M Data Analytics Club (TDAC) is a student organization that provides an analytics-inspired environment where Aggies can elevate their college experience and enhance their leadership skills through bi-weekly technical workshops and corporate events. We have grown substantially the last few years, with over 150 students from various degrees and majors. Our vision is to become the university’s premier hub for networking and recruiting in data analytics, which can be seen in our sponsorship with Texas A&M’s first annual Datathon to be hosted on October 2019.</p><p> <%= link_to 'Recent Events', '/event'%></p>
+<p> <%= link_to 'Recent Announcements', '/announcement'%></p>
+<% if @logged_in_user.permissionLevel =="officer" %>
+    <p> <%= link_to 'Management Pages', '/officer'%></p>
+<% end %>
