@@ -11,7 +11,9 @@ Rails.application.routes.draw do
   resources :user
   
   get 'event' => 'event#show'
-  get 'event.:id' => 'event#fixme'
+  # get 'event.:id' => 'event#fixme'
+  get 'officer/event' => 'event#officer_show'
+  post 'officer/event' => 'event#create'
   resources :event
   
   get 'announcement' => 'announcement#show'

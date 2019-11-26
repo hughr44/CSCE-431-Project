@@ -8,29 +8,7 @@ class EventController < ApplicationController
             @logged_in_user = getUser(session[:userinfo].fetch("info").fetch("email"))
             @events = Event.all
             @usersEvents = UsersEvent.all
-=begin            
-            @data is a container which contains (1) Event object (2) UsersEvents object
-            @data should looks like 
-            [ 
-                [Event obj(Dell Workshop), list of UsersEvent obj, "Register"],
-                [Event obj(Industry Night), list of UsersEvent obj, "Unregister"],
-                [Event obj(Movie Night), list of UsersEvent obj, "Register"],
-            ]
-            #populating @data below
-
-            @data = Array.new(@events.size)
-            @data.each_index do |i|
-                @list_of_users = UsersEvent.where(eventName: @events[i].eventName)
-                if(UsersEvent.exists?(eventName: @events[i].eventName, email: @logged_in_user.email))
-                    @id = UsersEvent.where(eventName: @events[i].eventName, email: @logged_in_user.email).ids
-                    puts @id
-                else
-                    @id = -1
-                end
-                @data[i] = [@events[i],@list_of_users, @status]
-            end
-            return
-=end            
+            
             @eventNameToListOfUsers = Hash.new
             @eventNameToIfCurrentUserRegistered = Hash.new
             @eventNameToUsersEventsObj = Hash.new
@@ -46,8 +24,29 @@ class EventController < ApplicationController
             redirect_to '/login'
             session['logged_in'] = true
         end
-        
-        
+    end
+    
+    def officer_show
+        if (session.has_key?('logged_in'))
+            @logged_in_user = getUser(session[:userinfo].fetch("info").fetch("email"))
+            @events = Event.all
+            @usersEvents = UsersEvent.all
+            
+            # @eventNameToListOfUsers = Hash.new
+            # @eventNameToIfCurrentUserRegistered = Hash.new
+            # @eventNameToUsersEventsObj = Hash.new
+            # @eventNameToEventObj = Hash.new
+            # @events.each do |e|
+            #     @eventNameToListOfUsers[e.eventName] = UsersEvent.where(eventName: e.eventName)
+            #     @eventNameToIfCurrentUserRegistered[e.eventName] = UsersEvent.exists?(eventName: e.eventName, email: @logged_in_user.email)
+            #     @eventNameToUsersEventsObj[e.eventName] = UsersEvent.where(eventName: e.eventName, email: @logged_in_user.email)
+            #     @eventNameToEventObj[e.eventName] = e
+            # end
+        else
+            session['redirect_url'] = '/event'
+            redirect_to '/login'
+            session['logged_in'] = true
+        end
     end
     
     def getUser(email)
@@ -63,11 +62,8 @@ class EventController < ApplicationController
     end
     
     def create
-        #TODO idk why event.params doesn't work
-        # if(session[:user].permissionLevel=='admin')
-            Event.create!(:eventID => params['eventID'], :eventName => params['eventName'], :eventDescription => params['eventDescription'], :eventImage => params['eventImage'], :eventUsers => params['eventUsers'])
-        # end    
-        redirect_to event_path
+        Event.create!(:eventName => params['eventName'], :eventDescription => params['eventDescription'], :eventImage => params['eventImage'])
+        redirect_to '/officer/event'
     end
     
     def edit
@@ -76,12 +72,12 @@ class EventController < ApplicationController
     def update
         @event = Event.find(params[:id])
         @event.update_attributes!(event_params)
-        redirect_to event_path
+        redirect_to '/officer/event'
     end
     def destroy
         @event = Event.find(params[:id])
         @event.destroy
-        redirect_to event_path
+        redirect_to '/officer/event'
     end
     #TODO list 
     #add eventDate

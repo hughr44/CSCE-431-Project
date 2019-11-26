@@ -9,19 +9,19 @@
 <br></br>
 <h3>Create new announcement:</h3>
 <%= form_with model: @announcement, class: "p-2" do |f| %>
-        
-          <div class="row form-group">
-            <label class="col-6">Title:</label>
-            <%= f.text_field :announcementTitle, class: "col-6 form-control" %>
-          </div>
-          
-          <div class="row form-group">
-            <label class="col-6">Content:</label>
-            <%= f.text_field :announcementText, class: "col-6 form-control" %>
-          </div>
-          
-          <div class="row">
-            <div class="col-8"></div>
-            <%= f.submit "Create", class: "col-4 btn btn-primary" %>
-          </div>
-        <% end %>
+  <div class="row form-group">
+    <label class="col-6">Title:</label>
+    <%= f.text_field :announcementTitle, class: "col-6 form-control" %>
+  </div>
+  
+  <div class="row form-group">
+    <label class="col-6">Content:</label>
+    <%= f.text_field :announcementText, class: "col-6 form-control" %>
+  </div>
+  
+  <div class="row">
+    <div class="col-8"></div>
+    <%= f.submit "Create", class: "col-4 btn btn-primary" %>
+  </div>
+<% end %>
+<p><%= link_to 'Officer home', '/officer'%></p>
