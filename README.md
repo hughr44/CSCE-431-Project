@@ -8,6 +8,6 @@
 
 ## Officers
 1. `/officer` This is for officers. It should have links to officer pages where they can change stuff. (backend DONE)
-2. `/officer/user` Officers can create or delete officers and members here.
+2. `/officer/user` Officers can create or delete officers and members here. (backend DONE, don't know why creating member not working.)
 3. `/officer/event` Officers can create, update, delete events.
 4. `/officer/announcement` Officers can create, update, delete announcements. (backend DONE)

@@ -40,7 +40,7 @@ class UserController < ApplicationController
             User.create(email: params['email'], permissionLevel: params['permissionLevel'], linkedInUrl: params['linkedInUrl'])
         end
         
-        redirect_to '/user'
+        redirect_to '/officer/user'
     end
     
     def destroy
@@ -51,7 +51,7 @@ class UserController < ApplicationController
             user.destroy
         end
         
-        redirect_to '/user'
+        redirect_to '/officer/user'
     end
     
     def home

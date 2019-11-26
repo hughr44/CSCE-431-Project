@@ -3,10 +3,10 @@ Rails.application.routes.draw do
   get 'auth/auth0/callback' => 'auth0#callback'
   get 'auth/failure' => 'auth0#failure'
   
-  get 'user' => 'user#show'
-  delete 'user' => 'user#destroy'
-  get 'about' => 'user#about'
   get '/' => 'user#home'
+  get '/officer/user' => 'user#show'
+  post '/officer/user' => 'user#create'
+  delete 'user' => 'user#destroy'
   get 'officer' => 'user#officer'
   resources :user
   
