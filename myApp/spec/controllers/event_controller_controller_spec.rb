@@ -8,13 +8,22 @@ RSpec.describe EventController, type: :controller do
     describe 'Testing EventController' do
         
         describe 'destroy' do
-            before do
+            it 'first testing proper event creation before calling destroy' do
+                @testEvent = Event.create(eventName: "Dell Workshop", eventDescription: "A workshop with Dell.", eventImage: "dell.jpg")
+                @testEvent = Event.find_by(eventName: "Dell Workshop")
+                expect(Event.find_by(eventName: "Dell Workshop")).to eq(@testEvent)
+            end
+        end
+        
+        describe 'destroy' do
+            it 'calling destroy on an existing event should be successful' do
+                @testEvent = Event.create(eventName: "Dell Workshop", eventDescription: "A workshop with Dell.", eventImage: "dell.jpg")
+                @testEvent = Event.find_by(eventName: "Dell Workshop")
+                
                 params = {id: 1}
                 post :destroy, params: params
-            end
-            
-            it 'calling destroy on an existing event should be successful' do
-                expect(EventController.new.destroy).to be_successful
+                
+                expect(Event.find_by(eventName: "Dell Workshop")).to eq(nil)
             end
         end
         
@@ -30,35 +39,33 @@ RSpec.describe EventController, type: :controller do
         end
         
         describe 'update' do
-            before do
-                params = {id: 1}
-                post :update, params: params
-            end
-            
             it 'calling update on an existing event should be successful' do
-                expect(EventController.new.update).to be_successful
+                @testEvent = Event.create(eventName: "Dell Workshop", eventDescription: "A workshop with Dell.", eventImage: "dell.jpg")
+                
+                params = {event: @testEvent, id: 1}
+                post :update, params: params
+                
+                expect(response).to have_http_status(:success)
             end
         end
         
         describe 'edit' do
-            before do
+            it 'calling edit on an existing event should be successful' do
+                @testEvent = Event.create(eventName: "Dell Workshop", eventDescription: "A workshop with Dell.", eventImage: "dell.jpg")
+                
                 params = {id: 1}
                 post :edit, params: params
-            end
-            
-            it 'calling edit on an existing event should be successful' do
-                expect(EventController.new.edit).to be_successful
+                
+                expect(response).to have_http_status(:success)
             end
         end
         
         describe 'create' do
-            before do
-                params = {id: 1}
-                post :create, params: params
-            end
-            
             it 'calling create on an event should be successful' do
-                expect(EventController.new.create).to be_successful
+                params = {eventID: "eventID", eventName: "eventName", eventDescription: "eventDescription", eventImage: "eventImage", eventUsers: "eventUsers"}
+                post :create, params: params
+                
+                expect(response).to have_http_status(:success)
             end
         end
         
