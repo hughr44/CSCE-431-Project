@@ -10,20 +10,21 @@ RSpec.describe UserController, type: :controller do
         
         describe 'new' do
             it 'calling new from UserController should be successful' do
-                expect(UserController.new).to be_successful
+                UserController.new
+                expect(response).to have_http_status(:success)
             end
         end
         
         describe 'getUser' do
             it 'getUser on valid email should return cooresponding user' do
                 @testUser = User.create(email: 'nandan@tamu.edu', permissionLevel: 'member', linkedInUrl: '')
-                expect(UserController.new.getUser('nandan@tamu.edu').first).to eq(@testUser)
+                expect(UserController.new.getUser('nandan@tamu.edu')).to eq(@testUser)
             end
         end
         
         describe 'getUser' do
             it 'getUser on invalid email should return nil' do
-                expect(UserController.new.getUser('doesntexist@tamu.edu').first).to eq(nil)
+                expect(UserController.new.getUser('doesntexist@tamu.edu')).to eq(nil)
             end
         end
         
@@ -42,14 +43,16 @@ RSpec.describe UserController, type: :controller do
         end
         
         describe 'destroy' do
+            before do
+                @testUser1 = User.create(email: 'nandan@tamu.edu', permissionLevel: 'officer', linkedInUrl: '')
+                params = {getUser: @testUser1}
+                session = {userinfo: {"info" => {"email" => 'nandan@tamu.edu'}}}
+                post :destroy, params: params, session: session
+            end
+            
             it 'creating then destroying user then calling userExists on specified email shoud be false' do
-                @testUser = User.create(email: 'nandan@tamu.edu', permissionLevel: 'officer', linkedInUrl: '')
-                @tempContr = UserController.create
-                @tempContr.params[:email] = 'nandan@tamu.edu'
-                allow(@tempContr).to receive(:getUser).and_return(@testUser)
-                allow(@tempContr).to receive(:getEmailFromToken).and_return('nandan@tamu.edu')
-                @tempContr.destroy
-                expect(@tempContr.userExists('nandan@tamu.edu')).to be_falsy
+                UserController.new.destroy
+                expect(UserController.new.userExists('nandan@tamu.edu')).to be_falsy
             end
         end
         
