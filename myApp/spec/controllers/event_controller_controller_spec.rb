@@ -28,13 +28,26 @@ RSpec.describe EventController, type: :controller do
         end
         
         describe 'show' do
-            before do
-                params = {id: 1}
-                post :show, params: params
+            it 'calling show on an should be successful' do
+                post :show
+                
+                expect(response).to have_http_status(302)
             end
-            
-            it 'calling show on an existing event should be successful' do
-                expect(EventController.new.show).to be_successful
+        end
+        
+        describe 'show' do
+            it 'calling officer_show should be successful' do
+                post :officer_show
+                
+                expect(response).to have_http_status(302)
+            end
+        end
+        
+        describe 'event' do
+            it 'calling event should be successful' do
+                post :event
+                
+                expect(response).to have_http_status(:successful)
             end
         end
         
@@ -42,10 +55,10 @@ RSpec.describe EventController, type: :controller do
             it 'calling update on an existing event should be successful' do
                 @testEvent = Event.create(eventName: "Dell Workshop", eventDescription: "A workshop with Dell.", eventImage: "dell.jpg")
                 
-                params = {event: @testEvent, id: 1}
+                params = {id: 1, event: {eventName: "Dell Workshop 2", eventDescription: "A workshop with Dell.", eventImage: "dell.jpg"}}
                 post :update, params: params
                 
-                expect(response).to have_http_status(:success)
+                expect(Event.find_by(eventName: "Dell Workshop 2")).to eq(@testEvent)
             end
         end
         
@@ -62,10 +75,12 @@ RSpec.describe EventController, type: :controller do
         
         describe 'create' do
             it 'calling create on an event should be successful' do
-                params = {eventID: "eventID", eventName: "eventName", eventDescription: "eventDescription", eventImage: "eventImage", eventUsers: "eventUsers"}
+                params = {eventName: "Dell Workshop", eventDescription: "A workshop with Dell.", eventImage: "dell.jpg"}
                 post :create, params: params
                 
-                expect(response).to have_http_status(:success)
+                @testEvent = Event.find_by(eventName: "Dell Workshop")
+                
+                expect(Event.find_by(eventName: "Dell Workshop")).to eq(@testEvent)
             end
         end
         

@@ -25,19 +25,13 @@ describe 'Testing AnnouncementController' do
         end
         
         describe 'update' do
-            before do
-                params = {id: 1}
-                post :update, params: params
-                Announcement.create!(:announcementTitle => "test anouncement", :announcementText => "test test")
-            end
-            
             it 'calling update on an existing announcement should be successful' do
                 @testAnn = Announcement.create(:announcementTitle => "test anouncement", :announcementText => "test test")
                 
-                params = {id: 1}
+                params = {id: 1, announcement: {announcementTitle: "test anouncement 2", announcementText: "test test"}}
                 post :update, params: params
                 
-                expect(AnnouncementController.new.update).to be_successful
+                expect(Announcement.find_by(announcementTitle: "test anouncement 2")).to eq(@testAnn)
             end
         end
         
