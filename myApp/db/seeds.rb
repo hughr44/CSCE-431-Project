@@ -8,6 +8,8 @@
 users = [
     {:email => 'nandan@tamu.edu', :permissionLevel => 'officer', :linkedInUrl => ''},
     {:email => 'lienshao@tamu.edu', :permissionLevel => 'officer', :linkedInUrl => ''},
+    {:email => 'leechris49@gmail.com', :permissionLevel => 'officer', :linkedInUrl => ''},
+    {:email => 'ma1hu1ja@tamu.edu', :permissionLevel => 'officer', :linkedInUrl => ''},
     {:email => 'danwgun@gmail.com', :permissionLevel => 'officer', :linkedInUrl => ''}
 ]
 users.each do |user|
