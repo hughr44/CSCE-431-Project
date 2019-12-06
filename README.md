@@ -9,5 +9,5 @@
 ## Officers
 1. `/officer` DONE. This is for officers. It should have links to officer pages where they can change stuff.
 2. `/officer/user` DONE. Officers can create or delete officers and members here.
-3. `/officer/event` Officers can create, update, delete events. 
+3. `/officer/event` DONE. Officers can create, update, delete events. 
 4. `/officer/announcement` Officers can create, update, delete announcements. 
