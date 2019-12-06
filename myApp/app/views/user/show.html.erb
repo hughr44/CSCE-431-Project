@@ -1,58 +1,91 @@
-<div class="main mt-2">
+<div class="main">
+  <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #162955;">
+      <a class="navbar-brand" href="/">
+          <img src="https://static.wixstatic.com/media/29c07c_d89e0de42dad4a20bb410b0c4cbbf3ab~mv2.png/v1/fill/w_161,h_161,al_c,q_80,usm_0.66_1.00_0.01/TDAC_LOGO.webp" width="30" height="30" class="d-inline-block align-top" alt="">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbar">
+          <div class="navbar-nav">
+              <a class="nav-item nav-link" href="/officer">Officer Home</a>
+              <a class="nav-item nav-link" href="/officer/event">Manage Events</a>
+              <a class="nav-item nav-link" href="/officer/announcement">Manage Announcements</a>
+              <a class="nav-item nav-link active" href="/officer/user">Manage Users</a>
+          </div>
+      </div>
+  </nav>
   <div class="container">
+    <h1 class="mt-2">Users</h1>
+    <hr class="my-2">
     <div class="row">
       <div class="col-12 col-md-7">
-        <h3>You are <%= @debug%></h3>
         <h4>Officers:</h4>
         <ul>
-          <% User.all.where(:permissionLevel => 'officer').each  do |user| %>
-            <li>
-              <%= user.email %>
-            </li>
-          <% end %>
+          <div class="list-group">
+            <% User.all.where(:permissionLevel => 'officer').each  do |user| %>
+              <li class="list-group-item">
+                <div class="row">
+                  <div class="col">
+                    <%= user.email %>
+                  </div>
+                  <div class="col">
+                    <%= button_to "Delete", {:controller => :user, :action => 'destroy', :email => user.email }, :method => :delete, class: "btn btn-danger" %>
+                  </div>
+                </div>
+              </li>
+            <% end %>
+          </div>
         </ul>
           
         <h4>Members:</h4>
         <ul>
-          <% User.all.each do |user| %>
-            <div class="row p-2 border-bottom">
-              <li class="col-6">
-                <%= user.email %>
+          <div class="list-group">
+            <% User.all.each do |user| %>
+              <li class="list-group-item">
+                <div class="row">
+                  <div class="col">
+                    <%= user.email %>
+                  </div>
+                  <div class="col">
+                    <%= button_to "Delete", {:controller => :user, :action => 'destroy', :email => user.email }, :method => :delete, class: "btn btn-danger" %>
+                  </div>
+                </div>
               </li>
-              <%= button_to "Delete", {:controller => :user, :action => 'destroy', :email => user.email }, :method => :delete, class: "btn btn-danger" %>
-            </div>
-          <% end %>
+            <% end %>
+          </div>
         </ul>
       </div>
-      <div class="col-12 col-md-5 border">
-        <h4 class="text-center pt-2">Register</h4>
-        <hr>
-        <%= form_with model: @user, class: "p-2" do |f| %>
-          <div class="row form-group">
-            <label class="col-6">Email:</label>
-            <%= f.text_field :email, class: "col-6 form-control" %>
-          </div>
-          
-          <div class="row form-group">
-            <label class="col-6">Permission Level:</label>
-            <select class="col-6 form-control">
-              <option>member</option>
-              <option>officer</option>
-            </select>
-          </div>
-          
-          <div class="row form-group">
-            <label class="col-6">LinkedIn Profile:</label>
-            <%= f.text_field :linkedInUrl, class: "col-6 form-control" %>
-          </div>
-          
-          <div class="row">
-            <div class="col-8"></div>
-            <%= f.submit "Create", class: "col-4 btn btn-primary" %>
-          </div>
-        <% end %>
+      <div class="col-12 col-md-5">
+        <div class="border p-4">
+          <h4 class="text-center pt-2">Create a New User</h4>
+          <hr>
+          <%= form_with model: @user, class: "p-2" do |f| %>
+            <div class="row form-group">
+              <label class="col-6">Email:</label>
+              <%= f.text_field :email, class: "col-6 form-control" %>
+            </div>
+            
+            <div class="row form-group">
+              <label class="col-6">Permission Level:</label>
+              <select class="col-6 form-control">
+                <option>member</option>
+                <option>officer</option>
+              </select>
+            </div>
+            
+            <div class="row form-group">
+              <label class="col-6">LinkedIn Profile:</label>
+              <%= f.text_field :linkedInUrl, class: "col-6 form-control" %>
+            </div>
+            
+            <div class="row">
+              <div class="col-8"></div>
+              <%= f.submit "Create", class: "col-4 btn btn-primary" %>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
 </div>
-<p><%= link_to 'Officer home', '/officer'%></p>

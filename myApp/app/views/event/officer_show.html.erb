@@ -1,38 +1,35 @@
-<div class="main">
-  <div class="container">
-    <h1 class="pt-2">Recent Events</h1>
-    <h5>You are logged in as: <%= @logged_in_user.email%>, <%= @logged_in_user.permissionLevel%> </h5>
-    <ul>
-      <% @events.each do |e| %>
-        <div class="row border-bottom py-4">
-          <div class="col-lg-6 col-12">
-            <img class="img-fluid" src=<%= e.eventImage %> width=40%>
+<div>
+  <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #162955;">
+      <a class="navbar-brand" href="/">
+          <img src="https://static.wixstatic.com/media/29c07c_d89e0de42dad4a20bb410b0c4cbbf3ab~mv2.png/v1/fill/w_161,h_161,al_c,q_80,usm_0.66_1.00_0.01/TDAC_LOGO.webp" width="30" height="30" class="d-inline-block align-top" alt="">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbar">
+          <div class="navbar-nav">
+              <a class="nav-item nav-link" href="/officer">Officer Home</a>
+              <a class="nav-item nav-link active" href="/officer/event">Manage Events</a>
+              <a class="nav-item nav-link" href="/officer/announcement">Manage Announcements</a>
+              <a class="nav-item nav-link" href="/officer/user">Manage Users</a>
           </div>
-          <div class="col-lg-4 col-12">
-            <h4><%= e.eventName %></h4>
-            <p><%= e.eventDescription %></p>
-          </div>
-          <div class="col-lg-2 col-12">
-            <%= link_to 'Edit', edit_event_path(e)%>
-            <%= button_to 'delete this event',{controller: :event, action: 'destroy', id: e.id}, method: :delete , url: '/event/'+e.id.to_s%>
-          </div>
-        </div>
-      <% end %>
-    </ul>
-    <h2>Create an event!</h2>
+      </div>
+  </nav>
+  <div class="container mt-2">
+    <h1>Create a New Event</h1>
     <%= form_with model: @user, class: "p-2" do |f| %>
       <div class="row form-group">
-        <label class="col-6">Event name:</label>
+        <label class="col-6">Name:</label>
         <%= f.text_field :eventName, class: "col-6 form-control" %>
       </div>
       
       <div class="row form-group">
-        <label class="col-6">Event description:</label>
+        <label class="col-6">Description:</label>
         <%= f.text_field :eventDescription, class: "col-6 form-control" %>
       </div>
       
       <div class="row form-group">
-        <label class="col-6">Event Image(link):</label>
+        <label class="col-6">Link to Image:</label>
         <%= f.text_field :eventImage, class: "col-6 form-control" %>
       </div>
       
@@ -41,8 +38,28 @@
         <%= f.submit "Create", class: "col-4 btn btn-primary" %>
       </div>
     <% end %>
-        
-    <p><%= link_to 'Officer home', '/officer'%></p>
+    
+    <hr class="my-4">
+    
+    <h1 class="pt-2">Existing Events</h1>
+    <ul>
+      <% @events.each do |e| %>
+        <div class="row border m-2 py-4">
+          <div class="col-lg-6 col-12">
+            <h4><%= e.eventName %></h4>
+            <p><%= e.eventDescription %></p>
+          </div>
+          <div class="col-lg-6 col-12">
+            <span>
+              <%= link_to 'Edit', edit_event_path(e), { :class => "btn btn-warning d-inline-block" } %>
+            </span>
+            <span>
+              <%= button_to 'Delete',{controller: :event, action: 'destroy', id: e.id}, { method: :delete , url: '/event/'+e.id.to_s, :class => "btn btn-danger d-inline-block" } %>
+            </span>
+          </div>
+        </div>
+      <% end %>
+    </ul>
   </div>
 </div>
 

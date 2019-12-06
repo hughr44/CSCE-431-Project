@@ -1,4 +1,21 @@
-<p> <%= link_to 'Manage Events', '/officer/event'%></p>
-<p> <%= link_to 'Manage Users', '/officer/user'%></p>
-<p> <%= link_to 'Manage Announcements', '/officer/announcement'%></p>
-<p> <%= link_to 'Home', '/'%></p>
+<div>
+    <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #162955;">
+        <a class="navbar-brand" href="/">
+            <img src="https://static.wixstatic.com/media/29c07c_d89e0de42dad4a20bb410b0c4cbbf3ab~mv2.png/v1/fill/w_161,h_161,al_c,q_80,usm_0.66_1.00_0.01/TDAC_LOGO.webp" width="30" height="30" class="d-inline-block align-top" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="/officer">Officer Home</a>
+                <a class="nav-item nav-link" href="/officer/event">Manage Events</a>
+                <a class="nav-item nav-link" href="/officer/announcement">Manage Announcements</a>
+                <a class="nav-item nav-link" href="/officer/user">Manage Users</a>
+            </div>
+        </div>
+    </nav>
+</div>
+<div class="container">
+    <p class="m-4">Since you're an officer, you can manage events, announcements, and users.</p>
+</div>

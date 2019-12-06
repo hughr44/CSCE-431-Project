@@ -1,27 +1,56 @@
-<h1>Announcements officers:</h1>
-<br></br>
-<% @announcements.each do |a| %>
-    <h4><%= a.announcementTitle%> &nbsp <%= link_to 'Edit', edit_announcement_path(a)%> &nbsp&nbsp&nbsp&nbsp <%= link_to 'Delete', '/announcement/'+a.id.to_s, method: :delete %></h4>
-    <p><%= a.announcementText%></p>
-<% end %>
-
-<br></br>
-<br></br>
-<h3>Create new announcement:</h3>
-<%= form_with model: @announcement, class: "p-2" do |f| %>
-  <div class="row form-group">
-    <label class="col-6">Title:</label>
-    <%= f.text_field :announcementTitle, class: "col-6 form-control" %>
+<div>
+  <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #162955;">
+    <a class="navbar-brand" href="/">
+        <img src="https://static.wixstatic.com/media/29c07c_d89e0de42dad4a20bb410b0c4cbbf3ab~mv2.png/v1/fill/w_161,h_161,al_c,q_80,usm_0.66_1.00_0.01/TDAC_LOGO.webp" width="30" height="30" class="d-inline-block align-top" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link" href="/officer">Officer Home</a>
+            <a class="nav-item nav-link" href="/officer/event">Manage Events</a>
+            <a class="nav-item nav-link active" href="/officer/announcement">Manage Announcements</a>
+            <a class="nav-item nav-link" href="/officer/user">Manage Users</a>
+        </div>
+    </div>
+  </nav>
+  <div class="container mt-2">
+    <h1>Create a New Announcement</h1>
+    <%= form_with model: @announcement, class: "p-2" do |f| %>
+      <div class="row form-group">
+        <label class="col-6">Title:</label>
+        <%= f.text_field :announcementTitle, class: "col-6 form-control" %>
+      </div>
+      
+      <div class="row form-group">
+        <label class="col-6">Content:</label>
+        <%= f.text_field :announcementText, class: "col-6 form-control" %>
+      </div>
+      
+      <div class="row">
+        <div class="col-8"></div>
+        <%= f.submit "Create", class: "col-4 btn btn-primary" %>
+      </div>
+    <% end %>
+    
+    <hr class="my-4">
+    
+    <h1 class="pt-2">Existing Announcements</h1>
+    <ul>
+      <% @announcements.each do |a| %>
+        <div class="row border m-2 py-4">
+          <div class="col-lg-6 col-12">
+            <h4><%= a.announcementTitle %></h4>
+            <p><%= a.announcementText %></p>
+          </div>
+          <div class="col-lg-6 col-12">
+            <%= link_to 'Edit', edit_announcement_path(a), { :class => "btn btn-warning" } %>
+            <br>
+            <%= link_to 'Delete', '/announcement/'+a.id.to_s, { method: :delete, :class => "btn btn-danger" } %>
+          </div>
+        </div>
+      <% end %>
+    </ul>
   </div>
-  
-  <div class="row form-group">
-    <label class="col-6">Content:</label>
-    <%= f.text_field :announcementText, class: "col-6 form-control" %>
-  </div>
-  
-  <div class="row">
-    <div class="col-8"></div>
-    <%= f.submit "Create", class: "col-4 btn btn-primary" %>
-  </div>
-<% end %>
-<p><%= link_to 'Officer home', '/officer'%></p>
+</div>
