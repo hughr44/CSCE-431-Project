@@ -1,37 +1,52 @@
-<div class="main">
-  <div class="container">
-    <h1 class="pt-2">Recent Events</h1>
-    <h5>You are logged in as: <%= @logged_in_user.email%>, <%= @logged_in_user.permissionLevel%> </h5>
-    <ul>
-      <% @events.each do |e| %>
-        <div class="row border-bottom py-4">
-          <div class="col-lg-6 col-12">
-            <img class="img-fluid" src=<%= e.eventImage %> width=40%>
-          </div>
-          <div class="col-lg-4 col-12">
-            <h4><%= e.eventName %></h4>
-            <p><%= e.eventDescription %></p>
-          </div>
-          <div class="col-lg-2 col-12">
-            <div class="text-center pb-2">
-              <% if @eventNameToIfCurrentUserRegistered[e.eventName] %>
-                <%= button_to 'Unregister',{:controller => "users_events", :action => 'destroy',:id => @eventNameToUsersEventsObj[e.eventName].ids }, :method => :delete %>
-              <% else %>
-                <%= button_to 'Register', {:controller => "users_events", :action => 'create', :email => @logged_in_user.email, :eventName => e.eventName},  :method => "post" %>
-              <% end %>
+<div>
+    <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #162955;">
+        <a class="navbar-brand" href="/">
+            <img src="https://static.wixstatic.com/media/29c07c_d89e0de42dad4a20bb410b0c4cbbf3ab~mv2.png/v1/fill/w_161,h_161,al_c,q_80,usm_0.66_1.00_0.01/TDAC_LOGO.webp" width="30" height="30" class="d-inline-block align-top" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="/">Home</a>
+                <a class="nav-item nav-link active" href="/event">Events</a>
+                <a class="nav-item nav-link" href="/announcement">Announcements</a>
+                <a class="nav-item nav-link" href="/calendar">Calendar</a>
             </div>
-            <h6>Registered Users:</h6>
-              <% @eventNameToListOfUsers[e.eventName].each do |user| %>
-                <p><%=user.email%></p>
-              <% end %>
-          </div>
         </div>
-      <% end %>
-      <!--<%  @usersEvents.each do |ue| %>-->
-      <!--  <p><%= ue.id %>: <%=ue.eventName%> -> <%=ue.email %></p>-->
-      <!--<% end %>-->
-    </ul>
-    <p> <%= link_to 'Home', '/'%></p>
+    </nav>
+    <div class="container">
+      <h1 class="pt-2">Recent Events</h1>
+      <ul>
+        <% @events.each do |e| %>
+          <div class="row border-bottom py-4">
+            <div class="col-lg-6 col-12">
+              <img class="img-fluid" src=<%= e.eventImage %>>
+            </div>
+            <div class="col-lg-4 col-12">
+              <h4><%= e.eventName %></h4>
+              <p><%= e.eventDescription %></p>
+            </div>
+            <div class="col-lg-2 col-12">
+              <div class="text-center pb-2">
+                <% if @eventNameToIfCurrentUserRegistered[e.eventName] %>
+                  <%= button_to 'Unregister', {:controller => "users_events", :action => 'destroy',:id => @eventNameToUsersEventsObj[e.eventName].ids }, { :method => :delete, :class => "btn btn-danger" } %>
+                <% else %>
+                  <%= button_to 'Register', {:controller => "users_events", :action => 'create', :email => @logged_in_user.email, :eventName => e.eventName},  { :method => "post", :class => "btn btn-success" } %>
+                <% end %>
+              </div>
+              <h6>Registered Users:</h6>
+                <% @eventNameToListOfUsers[e.eventName].each do |user| %>
+                  <p><%=user.email%></p>
+                <% end %>
+            </div>
+          </div>
+        <% end %>
+        <!--<%  @usersEvents.each do |ue| %>-->
+        <!--  <p><%= ue.id %>: <%=ue.eventName%> -> <%=ue.email %></p>-->
+        <!--<% end %>-->
+      </ul>
+    </div>
   </div>
 </div>
 

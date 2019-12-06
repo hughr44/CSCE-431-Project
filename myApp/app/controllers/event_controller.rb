@@ -6,6 +6,12 @@ class EventController < ApplicationController
     def show
         if (session.has_key?('logged_in'))
             @logged_in_user = getUser(session[:userinfo].fetch("info").fetch("email"))
+            
+            if (@logged_in_user == nil)
+                redirect_to '/'
+                return
+            end
+            
             @events = Event.all
             @usersEvents = UsersEvent.all
             
@@ -31,6 +37,11 @@ class EventController < ApplicationController
             @logged_in_user = getUser(session[:userinfo].fetch("info").fetch("email"))
             @events = Event.all
             @usersEvents = UsersEvent.all
+            
+            if (@logged_in_user == nil)
+                redirect_to '/'
+                return
+            end
             
             # @eventNameToListOfUsers = Hash.new
             # @eventNameToIfCurrentUserRegistered = Hash.new
