@@ -1,7 +1,33 @@
-<h1>Announcements:</h1>
-<br></br>
-<% @announcements.each do |a| %>
-    <h4><%= a.announcementTitle%></h4>
-    <p><%= a.announcementText%></p>
-<% end %>
-<p> <%= link_to 'Home', '/'%></p>
+<div>
+    <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #162955;">
+        <a class="navbar-brand" href="/">
+            <img src="https://static.wixstatic.com/media/29c07c_d89e0de42dad4a20bb410b0c4cbbf3ab~mv2.png/v1/fill/w_161,h_161,al_c,q_80,usm_0.66_1.00_0.01/TDAC_LOGO.webp" width="30" height="30" class="d-inline-block align-top" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="/">Home</a>
+                <a class="nav-item nav-link" href="/event">Events</a>
+                <a class="nav-item nav-link active" href="/announcement">Announcements</a>
+                <a class="nav-item nav-link" href="/calendar">Calendar</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="m-1">
+            <h1>Announcements</h1>
+            <p>Check this page to stay up to date with what is going on in our club. We update this page regularly with our most recent announcements!</p>
+            <hr>
+            <% @announcements.each do |a| %>
+                <div class="card mb-2">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= a.announcementTitle %></h5>
+                        <p class="card-text"><%= a.announcementText %></p>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>
