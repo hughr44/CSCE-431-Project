@@ -68,10 +68,10 @@
             
             <div class="row form-group">
               <label class="col-6">Permission Level:</label>
-              <select class="col-6 form-control">
-                <option>member</option>
-                <option>officer</option>
-              </select>
+              <!--<select class="col-6 form-control">-->
+              <%= f.select(:permissionLevel, ['member', 'officer'], {},{class: "col-6 form-control"}) %>
+                <!--<option>officer</option>-->
+              <!--</select>-->
             </div>
             
             <div class="row form-group">
