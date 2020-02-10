@@ -1,5 +1,7 @@
 # Pages
 
+https://tranquil-atoll-38693.herokuapp.com/
+
 ## Members
 1. `/` DONE. Home page. It should link to the rest of the pages. 
 2. `/event` DONE. List of events. They can register for them. 
